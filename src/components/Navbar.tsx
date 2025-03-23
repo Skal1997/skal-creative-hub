@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -39,7 +38,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <a href="#" className="flex items-center">
             <img 
-              src="/lovable-uploads/9a52dcea-75f7-48ea-bae8-419c93529617.png" 
+              src="/lovable-uploads/3feda140-7807-4197-b20f-3c9541c6cbf8.png" 
               alt="SKAL SERVICE" 
               className="h-10"
             />

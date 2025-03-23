@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
@@ -11,9 +10,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div>
             <img 
-              src="/lovable-uploads/9a52dcea-75f7-48ea-bae8-419c93529617.png" 
+              src="/lovable-uploads/3feda140-7807-4197-b20f-3c9541c6cbf8.png" 
               alt="SKAL SERVICE" 
-              className="h-10 mb-6 brightness-[1000%]"
+              className="h-16 mb-6"
             />
             <p className="text-gray-400 max-w-xs">
               SKAL SERVICE est votre partenaire privilégié pour tous vos besoins en conception graphique, 
