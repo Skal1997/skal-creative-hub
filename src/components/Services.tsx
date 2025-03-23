@@ -22,7 +22,7 @@ const services = [
   },
   {
     title: 'Conception et développement de site web',
-    description: 'Bénéficiez d'un site web sur mesure, responsive et optimisé.',
+    description: 'Bénéficiez d\'un site web sur mesure, responsive et optimisé.',
     icon: LayoutPlaneTakeoff,
   },
   {
@@ -32,12 +32,12 @@ const services = [
   },
   {
     title: 'Spécialiste en relevés topographiques',
-    description: 'Profitez de relevés topographiques précis pour vos projets d'aménagement.',
+    description: 'Profitez de relevés topographiques précis pour vos projets d\'aménagement.',
     icon: MapPin,
   },
   {
     title: 'Consultant IA',
-    description: 'Intégrez l'intelligence artificielle dans vos projets et optimisez vos processus.',
+    description: 'Intégrez l\'intelligence artificielle dans vos projets et optimisez vos processus.',
     icon: BrainCircuit,
   },
 ];
