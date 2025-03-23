@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { 
   Palette, 
   PlaneTakeoff, 
@@ -45,6 +45,7 @@ const services = [
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
@@ -78,6 +79,42 @@ const Services = () => {
     };
   }, []);
 
+  // Fonction pour gérer l'effet 3D au survol
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
+    if (!cardRefs.current[index]) return;
+    
+    const card = cardRefs.current[index];
+    const rect = card?.getBoundingClientRect();
+    
+    if (rect) {
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 10;
+      const rotateY = (centerX - x) / 10;
+      
+      if (card) {
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+      }
+    }
+  };
+
+  // Fonction pour réinitialiser la rotation
+  const handleMouseLeave = (index: number) => {
+    if (cardRefs.current[index]) {
+      cardRefs.current[index]!.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    }
+    setActiveCard(null);
+  };
+
+  // Fonction pour le clic sur une carte
+  const handleCardClick = (index: number) => {
+    setActiveCard(activeCard === index ? null : index);
+  };
+
   return (
     <section 
       id="services" 
@@ -98,14 +135,29 @@ const Services = () => {
             <div
               key={index}
               ref={(el) => (cardRefs.current[index] = el)}
-              className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-all service-card reveal-on-scroll"
-              style={{ transitionDelay: `${index * 100}ms` }}
+              className={`bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all service-card reveal-on-scroll ${activeCard === index ? 'card-active' : ''}`}
+              style={{ 
+                transitionDelay: `${index * 100}ms`,
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                transform: 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)'
+              }}
+              onMouseMove={(e) => handleMouseMove(e, index)}
+              onMouseLeave={() => handleMouseLeave(index)}
+              onClick={() => handleCardClick(index)}
             >
               <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-skal-orange/10 text-skal-orange mb-6">
                 <service.icon size={28} />
               </div>
               <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
               <p className="text-muted-foreground">{service.description}</p>
+              
+              {activeCard === index && (
+                <div className="mt-6 pt-4 border-t border-gray-100 animate-fade-in">
+                  <button className="px-4 py-2 bg-skal-orange text-white rounded-lg shadow-md hover:bg-skal-orange/90 transition-colors">
+                    En savoir plus
+                  </button>
+                </div>
+              )}
             </div>
           ))}
         </div>
