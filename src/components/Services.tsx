@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { 
   Palette, 
-  LayoutPlaneTakeoff, 
+  PlaneTakeoff, 
   Globe2, 
   BrainCircuit, 
   MapPin, 
@@ -23,7 +23,7 @@ const services = [
   {
     title: 'Conception et développement de site web',
     description: 'Bénéficiez d\'un site web sur mesure, responsive et optimisé.',
-    icon: LayoutPlaneTakeoff,
+    icon: PlaneTakeoff,
   },
   {
     title: 'Création de cartes précises',
